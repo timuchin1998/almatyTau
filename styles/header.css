@@ -1,7 +1,9 @@
 .carousel-item{
     display: flex;
     align-items: center;
-    /* height: 1000px;
-    width: 1000px; */
+}
+body{
+    left: 0;
+    top: 0;
 }
 
