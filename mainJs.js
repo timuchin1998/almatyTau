@@ -39,3 +39,4 @@ const deleteSymbol = () => {
         setTimeout(fillSymbol,100);
     }
 }
+
