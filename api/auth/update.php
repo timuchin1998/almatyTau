@@ -11,14 +11,35 @@ if(isset($_POST["email"], $_POST["full_name"], $_POST["discription"]) &&
     $email = $_POST["email"];    
     $full_name = $_POST["full_name"];    
     $discription = $_POST["discription"]; 
+
     
     $user_count = mysqli_query($conn, "SELECT count(*) as users_count FROM users WHERE email = '$email' and id<>'$user_id'");
     $user_count = mysqli_fetch_assoc($user_count);
     $user_count = (int) $user_count['users_count'];
 
     if($user_count > 0 ){
+
+        if(isset($_FILES["image"]) && strlen($_FILES["image"]["name"]) > 0){
+            $_file_name = time(); // 121s
+            $file_ext = end(explode(".", $_FILES["image"]["name"]));
+            $file_full_name = $file_name . "." . $file_ext;
+
+            move_uploaded_file($_FILES["image"]["tmp_name"], "../../img/avatars/$file_full_name");
+            
+            $_SESSION["image"]= $file_full_name;
+            // var_dump($file_full_name); die;
+
+            mysqli_query($conn, "UPDATE users
+                            SET email='$email', full_name='$full_name', discription='$discription', image='$file_full_name'
+                            WHERE id = $user_id");
+                            
+        }else{
+            mysqli_query($conn, "UPDATE users
+                            SET email='$email', full_name='$full_name', discription='$discription'
+                            WHERE id = $user_id");
+        }
+
         header("Location: $BASE_URL/views/edit-profile.php?error=2");
-        echo '<script>alert("Email уже зарегистриван")</script>'; 
     }else{
         $profile_query = mysqli_query($conn, "SELECT * FROM users WHERE id='$user_id'");
 
@@ -37,5 +58,7 @@ if(isset($_POST["email"], $_POST["full_name"], $_POST["discription"]) &&
            header("Location: $BASE_URL/views/profile.php");
         }
     }
+}else{
+    header("Location: $BASE_URL/views/edit-profile.php?error=1");
 }
 ?>

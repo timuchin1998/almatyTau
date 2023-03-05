@@ -19,6 +19,7 @@ if(isset($_POST["email"],$_POST["password"])
             $_SESSION["id"] = $user_query_result["id"];    
             $_SESSION["email"] = $user_query_result["email"];    
             $_SESSION["full_name"] = $user_query_result["full_name"];    
+            $_SESSION["profile_desc"] = $user_query_result["discription"];    
 
             header("Location: $BASE_URL/views/almatytau.php"); 
             // header("Location: $BASE_URL/views/profile.php"); 

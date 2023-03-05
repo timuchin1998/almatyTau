@@ -36,7 +36,7 @@ $profile = mysqli_fetch_assoc($profile_details_query);
             </div>
             <div class="col-xs-2 mt-3">    
                 <label for="inputlg">Фото профиля</label><br>
-                <input type="file" class="form-control" type="file" id="formFile">
+                <input class="form-control" type="file" name="image">
             </div>
             <div class="col-xs-3 mt-3">  
                 <label for="inputlg">Описание</label>
