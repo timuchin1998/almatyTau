@@ -54,10 +54,9 @@ $profile_desc = $_SESSION["discription"];
         </div>
         <div class="col-3 col-md">
             <div>
-                <img class="img-thumbnail" src="../img/avatars/1.png" >
+                <img class="img-thumbnail" src="../images/avatars/<?=$_SESSION['image']?>" alt="">
                 <h1><?=$_SESSION["full_name"] ?></h1>
                 <h2><?=$_SESSION["profile_desc"] ?></h2>
-                <img class="img-thumbnail" src="../img/avatars/<?=$_SESSION['image']?>" alt="">
                 <h1>описание тут должно быть</h1>
                 <p>0 постов за все время</p>
                 <a href="<?=$BASE_URL ?>/views/edit-profile.php" class="btn btn-success " tabindex="-1" role="button" aria-disabled="true">Редактировать</a>
@@ -65,10 +64,7 @@ $profile_desc = $_SESSION["discription"];
         </div>
            
     </div>
-
     
-    
-
    <!-- <?php
         include "footer.php"
     ?> -->

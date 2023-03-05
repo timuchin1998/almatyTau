@@ -41,7 +41,7 @@
                     <div class="d-flex" action="<?=$BASE_URL ?>/api/auth/signin.php" method="POST">
                         <?php 
                             if(isset($_SESSION["id"])){
-                                // echo '<img src="' . $BASE_URL . '../../img/avatars/' .$_SESSION["image"] . ' " >';    
+                                echo '<img class="" style="height: 50px; width: 50px;" src="' . $BASE_URL . '/images/avatars/' . $_SESSION["image"] . '" alt="">';    
                                 echo '<a href="../api/auth/logout.php" class="btn btn-outline-danger d-flex align-items-center" data-bs-toggle="modal" data-bs-target="">Log Out</a>';    
                             }else{
                                 echo '<button type="submit" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#iconModal">Sign in</button>
