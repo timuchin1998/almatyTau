@@ -23,7 +23,7 @@ if(isset($_POST["email"],$_POST["full_name"],$_POST["password"], $_POST["re_pass
             $pass = sha1($pass); 
 
             mysqli_query($conn, "INSERT INTO users(email, full_name, password, image)
-                                VALUES ('$email', '$full_name', '$pass', 'images')");
+                                VALUES ('$email', '$full_name', '$pass', 'image')");
 
             header("Location: $BASE_URL/views/almatytau.php"); 
         }

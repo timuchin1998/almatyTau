@@ -20,6 +20,7 @@ if(isset($_POST["email"],$_POST["password"])
             $_SESSION["email"] = $user_query_result["email"];    
             $_SESSION["full_name"] = $user_query_result["full_name"];    
             $_SESSION["profile_desc"] = $user_query_result["discription"];    
+            $_SESSION["image"] = $user_query_result["image"];    
 
             header("Location: $BASE_URL/views/almatytau.php"); 
             // header("Location: $BASE_URL/views/profile.php"); 
