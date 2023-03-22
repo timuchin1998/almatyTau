@@ -1,3 +1,7 @@
+<?php
+session_start();
+include "../config/base_url.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

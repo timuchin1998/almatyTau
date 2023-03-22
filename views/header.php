@@ -32,7 +32,7 @@
                         <a id="" href="<?=$BASE_URL ?>/views/profile.php" class="nav-link">Blog</a> 
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Delivery</a> 
+                        <a href="<?=$BASE_URL ?>/views/allblogs.php" class="nav-link">Blogs</a> 
                     </li>
                     <li class="nav-item">
                         <a href="<?=$BASE_URL ?>/views/contact.php" class="nav-link">Contact</a> 

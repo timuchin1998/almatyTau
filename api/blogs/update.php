@@ -7,12 +7,13 @@ $blog_id = $_GET["id"];
 $blog_data_query = mysqli_query($conn, "SELECT * FROM blogs WHERE id=$blog_id");
 $blog_data = mysqli_fetch_assoc($blog_data_query);
 
-if (isset($_POST["title"], $_POST["description"], $_POST["category_id"]) &&
-    strlen($_POST["title"]) > 0 && strlen($_POST["description"]) > 0) {
+if (isset($_POST["title"], $_POST["text"], $_POST["category_id"]) &&
+    strlen($_POST["title"]) > 0 && strlen($_POST["text"]) > 0) {
 
     $title = $_POST["title"];
-    $text = $_POST["description"];
+    $text = $_POST["text"];
     $category_id = $_POST["category_id"];
+    // $text = $_POST["text"];
 
     mysqli_query($conn, "UPDATE blogs
                          SET title='$title', text='$text', category_id='$category_id'
@@ -31,10 +32,10 @@ if (isset($_POST["title"], $_POST["description"], $_POST["category_id"]) &&
         mysqli_query($conn, "UPDATE blogs SET blog_image='$file_full_name' WHERE id='$blog_id'");
     }
 
-    header("Location: $BASE_URL/profile.php");
+    header("Location: $BASE_URL/views/profile.php");
 
 } else {
-    header("Location: $BASE_URL/editblog.php?error=1&id=$blog_id");
+    header("Location: $BASE_URL/views/editblog.php?error=1&id=$blog_id");
 }
 
 ?>
