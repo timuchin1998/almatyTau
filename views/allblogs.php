@@ -73,7 +73,7 @@ include "../config/db.php";
                         <img src="../images/visibility.svg" alt="">
                         21
                     </span>
-                    <a class="link" href="<?=$BASE_URL?>/blog-details.php?id=<?=$row['id']?>">
+                    <a class="link" href="<?=$BASE_URL?>/views/blog-details.php?id=<?=$row['id']?>">
                         <img src="../images/comments.svg" alt="">
                     </a>
                     <span class="link">

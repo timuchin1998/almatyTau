@@ -86,7 +86,7 @@ if(!isset($user_id)){
 
                                     </div>
                                 </div>
-                                </div>     
+                            </div>     
 					</span>
                 </div>
                 <h2>
@@ -103,8 +103,9 @@ if(!isset($user_id)){
                         <img src="../images/visibility.svg" alt="">
                         21
                     </span>
-                    <a class="link" href="<?=$BASE_URL?>/blog-details.php?id=<?=$row['id']?>">
+                    <a class="link" href="<?=$BASE_URL?>/views/blog-details.php?id=<?=$row['id']?>">
                         <img src="../images/comments.svg" alt="">
+                       
                     </a>
                     <span class="link">
                         <img src="../images/forums.svg" alt="">
