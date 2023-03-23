@@ -3,6 +3,14 @@ session_start();
 include "../config/base_url.php";
 include "../config/db.php";
 
+$blogs_per_page = 10;
+if (isset($_GET["page"])) {
+    $curr_page = $_GET["page"];
+} else {
+    $curr_page = 1;
+}
+$limit_start = ($curr_page - 1) * $blogs_per_page;
+
 ?>
 
 <!DOCTYPE html>
@@ -33,9 +41,9 @@ include "../config/db.php";
             <div>
                 <h4>Блоги в AlmatyTau</h4>
             </div>
-            <!-- <div>
-                <a href="<?=$BASE_URL?>/views/newblog.php" class="btn btn-success " tabindex="-1" role="button" aria-disabled="true">Новый блог</a>
-            </div> -->
+            <div>
+                <a href="<?=$BASE_URL?>/views/newblog.php" class="btn btn-success " tabindex="-1" role="button" aria-disabled="true">Добавить блог</a>
+            </div>
         </div>
         <div class="blogs">
             <?php
@@ -73,8 +81,12 @@ include "../config/db.php";
                         <img src="../images/visibility.svg" alt="">
                         21
                     </span>
-                    <a class="link" href="<?=$BASE_URL?>/views/blog-details.php?id=<?=$row['id']?>">
+                    <a class="text-decoration-none" style="color:black" href="<?=$BASE_URL?>/views/blog-details.php?id=<?=$row['id']?>">
                         <img src="../images/comments.svg" alt="">
+                        <?php
+                                $comments_num_query = mysqli_query($conn, "SELECT id FROM comments WHERE blog_id=".$row['id']);
+                                echo mysqli_num_rows($comments_num_query);
+                        ?>
                     </a>
                     <span class="link">
                         <img src="../images/forums.svg" alt="">
@@ -83,7 +95,7 @@ include "../config/db.php";
                         echo mysqli_fetch_assoc($category_query)["category_name"];
                         ?>
                     </span>
-                    <a class="text-decoration-none lead text-success">
+                    <a href="<?=$BASE_URL ?>/views/profile.php"" class="text-decoration-none lead text-success">
                         <img src="../images/person.svg" alt="">
                         <?php
 							$user_query = mysqli_query($conn, "SELECT full_name FROM users WHERE id=" . $row["user_id"]);
@@ -96,19 +108,49 @@ include "../config/db.php";
                 }
             }
             ?>
-        </div> 
+        </div>
+        <nav aria-label=""> 
+        <ul class="pagination justify-content-center">
+                <?php
+                if (isset($_GET["category_id"])) {
+                    $num_rows = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM blogs WHERE category_id=" . $_GET["category_id"]));    
+                } else {
+                    $num_rows = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM blogs"));
+                }
+        
+                for ($i = 1; $i <= ceil($num_rows / $blogs_per_page); $i++) {
+                    if (isset($_GET["category_id"])) {
+                        $pag_href = "$BASE_URL/views/allblogs.php/?page=$i&category_id=" . $_GET["category_id"];
+                    } else {
+                        $pag_href = "$BASE_URL/views/allblogs.php/?page=$i";
+                    }
+
+                    if ($i == $curr_page) {
+                        echo '<li class="page-item"><a href="'.$pag_href.'" class="page-link pages-nav-btn-active">'. $i .'</a></li>';
+                    } else {
+                        echo '<li class="page-item"><a href="'.$pag_href.'" class="page-link">'. $i .'</a></li>';
+                    }
+                }
+                ?>
+                <!-- <nav aria-label="">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#">Предыдущая</a></li>
+                        <li class="page-item"><a class="page-link" href="">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Следующая</a></li>
+                    </ul>
+                </nav> -->
+            </ul>
+        </nav>
     </div>
         <div class="col-3 col-md">
             <div class="d-flex align-items-center flex-column " style="gap:15px">
                 <h2>Категории</h2>
                 <?php
-
-                
-                
                 $category_query = mysqli_query($conn, "SELECT * FROM categories");
-
                 while ($row = mysqli_fetch_assoc($category_query)){
-                    echo '<a class="" style="text-decoration: none" href=" ' . $BASE_URL . '/views/allblogs.php'. '?category_id=' . $row["id"] . '">'. $row["category_name"] .'</a>';
+                    echo '<a class="link-success" style="text-decoration: none" href=" ' . $BASE_URL . '/views/allblogs.php'. '?category_id=' . $row["id"] . '">'. $row["category_name"] .'</a>';
                 }
                 ?>
             </div>    

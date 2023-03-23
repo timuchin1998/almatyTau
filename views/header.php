@@ -29,7 +29,7 @@
                         <a href="" class="nav-link">About</a> 
                     </li>
                     <li class="nav-item">
-                        <a id="" href="<?=$BASE_URL ?>/views/profile.php" class="nav-link">Blog</a> 
+                        <a id="" href="<?=$BASE_URL ?>/views/profile.php" class="nav-link">My Blog</a> 
                     </li>
                     <li class="nav-item">
                         <a href="<?=$BASE_URL ?>/views/allblogs.php" class="nav-link">Blogs</a> 

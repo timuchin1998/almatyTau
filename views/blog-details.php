@@ -123,7 +123,7 @@ $all_comments_query = mysqli_query($conn, "SELECT * FROM comments WHERE blog_id=
 
                                                     <!-- Modal footer -->
                                                     <div class="modal-footer">
-                                                        <a href="<?=$BASE_URL?>/views/blog-details.php?id=<?=$blog_id?>&comment_id=<?=$row['id']?>"class="btn btn-success">Редактировать</a> 
+                                                        <a href="<?=$BASE_URL?>../views/blog-details.php?id=<?=$blog_id?>&comment_id=<?=$row['id']?>"class="btn btn-success">Редактировать</a> 
                                                         <a href="<?=$BASE_URL?>../api/comments/delete.php?id=<?=$row['id']?>"class="btn btn-danger">Удалить</a>
                                                     </div>
 

@@ -10,10 +10,10 @@ if (isset($_POST["text"]) && strlen($_POST["text"]) > 0) {
 
     $text = $_POST["text"];
     mysqli_query($conn, "UPDATE comments SET text='$text' WHERE id=$comment_id");
-    header("Location: $BASE_URL/blog-details.php?id=$blog_id");
+    header("Location: $BASE_URL/views/blog-details.php?id=$blog_id");
 
 } else {
-    header("Location: $BASE_URL/blog-details.php?id=$blog_id&comment_id=$comment_id&error=1");
+    header("Location: $BASE_URL/views/blog-details.php?id=$blog_id&comment_id=$comment_id&error=1");
 }
 
 ?>

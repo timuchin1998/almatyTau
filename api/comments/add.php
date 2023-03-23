@@ -14,10 +14,10 @@ if (isset($_GET["blog_id"], $_POST["text"]) && strlen($_POST["text"]) > 0) {
     mysqli_query($conn, "INSERT INTO comments(user_id, blog_id, text)
                          VALUES ($user_id, $blog_id, '$text')");
 
-    header("Location: $BASE_URL/blog-details.php?id=$blog_id");
+    header("Location: $BASE_URL/views/blog-details.php?id=$blog_id");
 
 } else {
-    header("Location: $BASE_URL/blog-details.php?error=1&id=$blog_id");
+    header("Location: $BASE_URL/views/blog-details.php?error=1&id=$blog_id");
 }
 
 

@@ -103,9 +103,12 @@ if(!isset($user_id)){
                         <img src="../images/visibility.svg" alt="">
                         21
                     </span>
-                    <a class="link" href="<?=$BASE_URL?>/views/blog-details.php?id=<?=$row['id']?>">
+                    <a class="text-decoration-none" style="color:black" href="<?=$BASE_URL?>/views/blog-details.php?id=<?=$row['id']?>">
                         <img src="../images/comments.svg" alt="">
-                       
+                        <?php
+                                $comments_num_query = mysqli_query($conn, "SELECT id FROM comments WHERE blog_id=".$row['id']);
+                                echo mysqli_num_rows($comments_num_query);
+                        ?>
                     </a>
                     <span class="link">
                         <img src="../images/forums.svg" alt="">
@@ -114,7 +117,7 @@ if(!isset($user_id)){
                         echo mysqli_fetch_assoc($category_query)["category_name"];
                         ?>
                     </span>
-                    <a class="text-decoration-none lead text-success">
+                    <a href="<?=$BASE_URL ?>/views/profile.php"" class="text-decoration-none lead text-success">
                         <img src="../images/person.svg" alt="">
                         <?php
 							$user_query = mysqli_query($conn, "SELECT full_name FROM users WHERE id=" . $row["user_id"]);
