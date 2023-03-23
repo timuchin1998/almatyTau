@@ -4,10 +4,18 @@ include "../config/base_url.php";
 include "../config/db.php";
 
 $user_id = $_SESSION["id"];
+
 if(!isset($user_id)){
     header("Location: $BASE_URL/views/almatytau.php");
 }
 // $profile_desc = $_SESSION["discription"];
+$blogs_per_page = 5;
+if (isset($_GET["page"])) {
+    $curr_page = $_GET["page"];
+} else {
+    $curr_page = 1;
+}
+$limit_start = ($curr_page - 1) * $blogs_per_page;
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +52,7 @@ if(!isset($user_id)){
         </div>
         <div class="blogs">
             <?php
-            $blogs_query = mysqli_query($conn, "SELECT * FROM blogs WHERE user_id=$user_id");
+            $blogs_query = mysqli_query($conn, "SELECT * FROM blogs WHERE user_id=$user_id LIMIT $limit_start, $blogs_per_page");
             if (mysqli_num_rows($blogs_query) == 0) {
                 echo '<h2 class="no_blogs">Пока нет постов!</h2>';
             } else {
@@ -130,7 +138,33 @@ if(!isset($user_id)){
                 }
             }
             ?>
-        </div> 
+        </div>
+        <nav aria-label=""> 
+        <ul class="pagination justify-content-center">
+                <?php
+                if (isset($_GET["category_id"])) {
+                    $num_rows = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM blogs WHERE category_id=" . $_GET["category_id"]));    
+                } else {
+                    $num_rows = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM blogs"));
+                }
+        
+                for ($i = 1; $i <= ceil($num_rows / $blogs_per_page); $i++) {
+                    if (isset($_GET["category_id"])) {
+                        $pag_href = "$BASE_URL/views/allblogs.php/?page=$i&category_id=" . $_GET["category_id"];
+                    } else {
+                        $pag_href = "$BASE_URL/views/allblogs.php/?page=$i";
+                    }
+
+                    if ($i == $curr_page) {
+                        echo '<li class="page-item"><a href="'.$pag_href.'" class="page-link pages-nav-btn-active">'. $i .'</a></li>';
+                    } else {
+                        echo '<li class="page-item"><a href="'.$pag_href.'" class="page-link">'. $i .'</a></li>';
+                    }
+                }
+                ?>
+               
+            </ul>
+        </nav> 
     </div>
         <div class="col-3 col-md">
                         <div>
