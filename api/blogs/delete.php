@@ -13,7 +13,7 @@ unlink("../../images/blogs/$image_name");
 
 mysqli_query($conn, "DELETE FROM blogs WHERE id=$blog_id");
 
-var_dump($blog_id); die();
+// var_dump($blog_id); die();
 
 header("Location: $BASE_URL/views/profile.php");
 

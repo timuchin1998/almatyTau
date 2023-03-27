@@ -45,7 +45,7 @@ $limit_start = ($curr_page - 1) * $blogs_per_page;
                 <a href="<?=$BASE_URL?>/views/newblog.php" class="btn btn-success " tabindex="-1" role="button" aria-disabled="true">Добавить блог</a>
             </div>
         </div>
-        <div class="blogs">
+        <div class="blogs" >
             <?php
 
             if(isset($_GET["category_id"])){
@@ -58,11 +58,8 @@ $limit_start = ($curr_page - 1) * $blogs_per_page;
             } else {
                 while ($row = mysqli_fetch_assoc($blogs_query)) {
             ?>
-            <div class="container mt-5 ">
-                <div class="d-flex justify-content-around gy-5">    
-      
-     
-                </div>
+            <div class="container" style="margin-block: 60px;">
+
                 <h2>
                         <?=$row["title"]?>
                 </h2>    
@@ -72,7 +69,7 @@ $limit_start = ($curr_page - 1) * $blogs_per_page;
                     </p>
                     <img src="../../images/" alt="">          
             </div>
-            <div class="d-flex align-items-center justify-content-evenly" >
+            <div class="d-flex align-items-center justify-content-evenly border-bottom" style="margin-top: 20px;" >
                       <span class="link">
                         <img src="../images/date.svg" alt="">
                         <?=$row["created_at"]?>
@@ -109,8 +106,10 @@ $limit_start = ($curr_page - 1) * $blogs_per_page;
             }
             ?>
         </div>
-        <nav aria-label=""> 
-        <ul class="pagination justify-content-center">
+        <nav aria-label="Page navigation example" style="margin-top: 25px;" > 
+            <ul class="pagination justify-content-center" >
+                <li class="page-item">
+                    
                 <?php
                 if (isset($_GET["category_id"])) {
                     $num_rows = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM blogs WHERE category_id=" . $_GET["category_id"]));    
@@ -132,11 +131,12 @@ $limit_start = ($curr_page - 1) * $blogs_per_page;
                     }
                 }
                 ?>
+                </li>
             </ul>
         </nav>
     </div>
-        <div class="col-3 col-md">
-            <div class="d-flex align-items-center flex-column " style="gap:15px">
+        <div class="col-2 col-md" style="line-height: 30px;">
+            <div class="d-flex align-items-center flex-column">
                 <h2>Категории</h2>
                 <?php
                 $category_query = mysqli_query($conn, "SELECT * FROM categories");

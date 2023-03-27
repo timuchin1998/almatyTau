@@ -26,10 +26,11 @@ $all_comments_query = mysqli_query($conn, "SELECT * FROM comments WHERE blog_id=
         include "header.php"
     ?>
 
-<section class="row text-center" style="margin-top: 100px;">
-	<div class="page-content">
+<section class="row text-center" style="margin: 80px 10px;">
+	<div class="page-content" >
 		<div class="blogs">
-			<div class="blog-item">
+		<h2>Мой Комментарии</h2>
+			<div class="blog-item" style="">
 				<img class="blog-item--img" src="<?=$BASE_URL?>/images/blogs/<?=$blog_details['blog_image']?>" alt="">
 
 				<div class="blog-header">
@@ -38,7 +39,7 @@ $all_comments_query = mysqli_query($conn, "SELECT * FROM comments WHERE blog_id=
 
 				<p class="blog-desc"><?=$blog_details["text"]?></p>
 
-                <div class="d-flex align-items-center justify-content-evenly">
+                <div class="d-flex align-items-center justify-content-evenly" style="margin-top: 50px;">
 					<span class="link">
 						<img src="../images/date.svg" alt="">
 						<?=$blog_details["created_at"]?>
@@ -75,9 +76,9 @@ $all_comments_query = mysqli_query($conn, "SELECT * FROM comments WHERE blog_id=
 			</div>
 		</div>
 
-        <div class="d-flex-column">
+        <div class="d-flex" style="justify-content: center; align-items: center; flex-direction: column;">
             <h2>
-                Комментарий: <?=mysqli_num_rows($all_comments_query)?>
+                Комментарии: <?=mysqli_num_rows($all_comments_query)?>
             </h2>
 				<?php
 				if (mysqli_num_rows($all_comments_query) == 0) {
@@ -162,7 +163,7 @@ $all_comments_query = mysqli_query($conn, "SELECT * FROM comments WHERE blog_id=
 						?>
 						<button class="btn btn-success" style="margin-top: 10px;">Отправить</button>
 					</form>
-	
+				
 				<?php
 				} else {
 				?>

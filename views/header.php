@@ -26,9 +26,6 @@
                         <a href="<?=$BASE_URL ?>/views/almatytau.php" class="nav-link">Home</a> 
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">About</a> 
-                    </li>
-                    <li class="nav-item">
                         <a id="" href="<?=$BASE_URL ?>/views/profile.php" class="nav-link">My Blog</a> 
                     </li>
                     <li class="nav-item">
