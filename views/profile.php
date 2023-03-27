@@ -66,12 +66,12 @@ $limit_start = ($curr_page - 1) * $blogs_per_page;
                     </span> 
                     <span class="">
                         <div class="container">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
-                            <img src="<?=$BASE_URL?>/images/dots.svg" alt="">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal_<?=$row["id"]?>">
+                                <img src="<?=$BASE_URL?>/images/dots.svg" alt="">
                                 Еще
                             </button>  
                         </div>
-                             <div class="modal" id="myModal">
+                             <div class="modal" id="myModal_<?=$row["id"]?>">
                                 <div class="modal-dialog modal-sm">
                                     <div class="modal-content">
 
@@ -106,7 +106,8 @@ $limit_start = ($curr_page - 1) * $blogs_per_page;
                     </p>
                     <img src="../../images/" alt="">          
             </div>
-            <div class="d-flex align-items-center justify-content-evenly" >
+            <div class="d-flex align-items-center justify-content-evenly border-bottom" >
+            
                    <span class="link" >
                         <img src="../images/visibility.svg" alt="">
                         21
@@ -139,22 +140,16 @@ $limit_start = ($curr_page - 1) * $blogs_per_page;
             }
             ?>
         </div>
-        <nav aria-label=""> 
+        <nav aria-label="" style="margin-top: 20px;"> 
         <ul class="pagination justify-content-center">
                 <?php
-                if (isset($_GET["category_id"])) {
-                    $num_rows = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM blogs WHERE category_id=" . $_GET["category_id"]));    
-                } else {
-                    $num_rows = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM blogs"));
-                }
-        
-                for ($i = 1; $i <= ceil($num_rows / $blogs_per_page); $i++) {
-                    if (isset($_GET["category_id"])) {
-                        $pag_href = "$BASE_URL/views/allblogs.php/?page=$i&category_id=" . $_GET["category_id"];
-                    } else {
-                        $pag_href = "$BASE_URL/views/allblogs.php/?page=$i";
-                    }
+                
+                $num_rows = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM blogs WHERE user_id=".$_SESSION["id"]));
 
+                for ($i = 1; $i <= ceil($num_rows / $blogs_per_page); $i++) {
+                    
+                    $pag_href = "$BASE_URL/views/profile.php/?page=$i";
+                 
                     if ($i == $curr_page) {
                         echo '<li class="page-item"><a href="'.$pag_href.'" class="page-link pages-nav-btn-active">'. $i .'</a></li>';
                     } else {

@@ -153,9 +153,8 @@ $all_comments_query = mysqli_query($conn, "SELECT * FROM comments WHERE blog_id=
 						$comment_text = "";
 					}
 				?>
-					<form class="comment-add" action="<?=$action_link?>" method="POST">
-						<textarea class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3" name="text" class="comment-textarea" placeholder="Введит текст комментария"><?=$comment_text?></textarea>
-
+					<form class="form-outline w-75 mb-4" action="<?=$action_link?>" method="POST">
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="text" class="comment-textarea" placeholder="Введит текст комментария"><?=$comment_text?></textarea>
 						<?php
 						if (isset($_GET["error"]) && $_GET["error"] == 1) {
 							echo '<p class="text-danger">Коментарий не может быть пустым!</p>';
